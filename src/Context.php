@@ -71,7 +71,7 @@ class Context
         string $apiSecretKey,
         $scopes,
         string $hostName,
-        SessionStorage $sessionStorage,
+        $sessionStorage,
         string $apiVersion = ApiVersion::LATEST,
         bool $isEmbeddedApp = true,
         bool $isPrivateApp = false,
