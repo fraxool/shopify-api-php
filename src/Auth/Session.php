@@ -26,12 +26,19 @@ class Session
         string $id,
         string $shop,
         bool $isOnline,
-        string $state
+        string $state,
+        int $user_id
     ) {
         $this->id = $id;
         $this->shop = Utils::sanitizeShopDomain($shop);
         $this->isOnline = $isOnline;
         $this->state = $state;
+        $this->user_id = $user_id;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->user_id;
     }
 
     public function getId(): string
