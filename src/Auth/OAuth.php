@@ -46,7 +46,8 @@ class OAuth
         string $shop,
         string $redirectPath,
         bool $isOnline,
-        ?callable $setCookieFunction = null
+        ?callable $setCookieFunction = null,
+        int $user_id
     ): string {
         Context::throwIfUninitialized();
         Context::throwIfPrivateApp("OAuth is not allowed for private apps");
@@ -69,7 +70,7 @@ class OAuth
             );
         }
 
-        $session = new Session($mySessionId, $sanitizedShop, $isOnline, Uuid::uuid4()->toString());
+        $session = new Session($mySessionId, $sanitizedShop, $isOnline, Uuid::uuid4()->toString(), $user_id);
 
         if ($isOnline) {
             $session->setExpires(strtotime('+1 minute'));
