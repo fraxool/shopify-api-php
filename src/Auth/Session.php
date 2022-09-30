@@ -21,6 +21,8 @@ class Session
     private $accessToken = null;
     /** @var AccessTokenOnlineUserInfo|null */
     private $onlineAccessInfo = null;
+    /** @var inot|null */
+    private $user_id = null;
 
     public function __construct(
         string $id,
@@ -93,6 +95,11 @@ class Session
         return $this->onlineAccessInfo;
     }
 
+    public function setUserId(int $user_id): void
+    {
+        $this->user_id = $user_id;
+    }
+
     public function setScope(string $scope): void
     {
         $this->scope = $scope;
@@ -137,11 +144,12 @@ class Session
      */
     public function clone(string $newSessionId): Session
     {
-        $newSession = new Session($newSessionId, $this->shop, $this->isOnline, $this->state);
+        $newSession = new Session($newSessionId, $this->shop, $this->isOnline, $this->state, $this->user_id);
         $newSession->scope = $this->scope;
         $newSession->expires = $this->expires;
         $newSession->accessToken = $this->accessToken;
         $newSession->onlineAccessInfo = $this->onlineAccessInfo;
+        $newSession->user_id = $this->user_id;
 
         return $newSession;
     }
